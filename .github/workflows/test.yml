@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Test
 on:
   push:
     branches: [ main, dev ]
@@ -15,8 +15,6 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm install -g pnpm && pnpm install
-    - name: Install Playwright Browsers
-      run: pnpm exec playwright install --with-deps
     - name: Git Diff
       run: npx @canyonjs/git-diff
     - name: Run Playwright tests
@@ -27,12 +25,6 @@ jobs:
         coverage-file: coverage/coverage-final.json
         canyon-url: https://app.canyonjs.io
         instrument-cwd: ${{ github.workspace }}
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
