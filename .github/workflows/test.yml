@@ -17,7 +17,7 @@ jobs:
       run: npm install -g pnpm && pnpm install
     - name: Git Diff
       run: npx @canyonjs/git-diff
-    - name: Run Playwright tests
+    - name: Run tests
       run: pnpm run test
     - name: Upload coverage to Canyon
       uses: canyon-project/canyon-action@v1.0.9
